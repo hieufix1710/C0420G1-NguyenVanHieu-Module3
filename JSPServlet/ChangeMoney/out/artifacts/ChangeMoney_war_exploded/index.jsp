@@ -21,6 +21,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
+
+
   <h2>Currency Converter</h2>
   <form method="get" action="/bar">
     <label>Rate: </label><br/>

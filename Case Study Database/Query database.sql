@@ -53,10 +53,10 @@ having not year(ngaylamhopdong)=2019;
 
 #task 8
 
-select distinct * from khachhang;
+select distinct * from khachhang
+group by khachhang.hoten;
 
-select * from customer
-order by hoten ;
+
 
 #task 9
 select month(ngaylamhopdong) as thang, count(IDkhachhang) as solandatphong ,sum(tongtien) as doanhthu from hopdong
