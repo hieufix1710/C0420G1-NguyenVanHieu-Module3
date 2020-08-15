@@ -97,4 +97,9 @@ public class Bo implements IBo {
     public List<User> login() {
         return dao.login();
     }
+
+    @Override
+    public void deleteEmployee(int id) {
+        dao.deleteEmployee(id);
+    }
 }

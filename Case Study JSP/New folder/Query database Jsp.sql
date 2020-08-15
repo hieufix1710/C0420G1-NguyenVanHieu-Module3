@@ -73,7 +73,16 @@ end ;
 // delimiter ;
 
 
-select * from nhanvien;
-insert into user (name,password,IDnhanvien)
-values
-("admin","123123","1")
+
+delimiter //
+create procedure deleteEmployee(id int)
+begin
+delete from hopdong
+where IDnhanvien=id;
+delete from user
+where IDnhanvien=id;
+delete from nhanvien
+where IDnhanvien=id;
+end ;
+// delimiter ;
+

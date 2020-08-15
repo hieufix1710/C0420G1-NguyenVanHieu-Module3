@@ -23,4 +23,5 @@ public interface IDao {
     Employee findEmployee(int id);
     void updateEmployee(Employee e);
     List<User> login();
+    void deleteEmployee(int id);
 }

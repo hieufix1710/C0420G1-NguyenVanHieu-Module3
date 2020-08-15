@@ -11,6 +11,8 @@
         <element id="directory" name="lib">
           <element id="file-copy" path="$PROJECT_DIR$/../JSTL/jstl-1.2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/../JSTL/mysql-connector-java-8.0.11.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../JSTL/jstl-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../JSTL/mysql-connector-java-8.0.11.jar" />
         </element>
       </element>
     </root>

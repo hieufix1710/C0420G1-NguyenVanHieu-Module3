@@ -115,7 +115,7 @@
 <form>
     <table>
         <tr>
-            <th>ID Customer</th>
+            <th>ID </th>
             <th>Type Customer</th>
             <th>Name</th>
             <th>Birthday</th>

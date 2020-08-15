@@ -15,7 +15,7 @@
     <style>
         body {
             color: #566787;
-            background-image: url("https://letweb.net/wp-content/uploads/2018/06/tom-tat-chien-dich-online-marketing-trong-mot-trang-giay-1.jpg");
+            background-image: url("");
             /*background: #f7f5f2;*/
             font-family: 'Roboto', sans-serif;
         }
@@ -165,7 +165,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <a href="/furama_resort"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Back"></a>
+                    <a href="/furama_resort?activity=showListCustomer"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Back"></a>
                 </div>
             </form>
         </div>

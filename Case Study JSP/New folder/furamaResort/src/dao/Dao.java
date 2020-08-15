@@ -396,4 +396,15 @@ public class Dao implements IDao {
         }
         return userList;
     }
+
+    @Override
+    public void deleteEmployee(int id) {
+        try {
+            CallableStatement callableStatement=connection.prepareCall("{call deleteEmployee(?)}");
+            callableStatement.setInt(1,id);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

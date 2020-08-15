@@ -15,7 +15,7 @@
     <style>
         body {
             color: #566787;
-            background-image: url("https://letweb.net/wp-content/uploads/2018/06/tom-tat-chien-dich-online-marketing-trong-mot-trang-giay-1.jpg");
+            background-image: url("");
             /*background: #f7f5f2;*/
             font-family: 'Roboto', sans-serif;
         }

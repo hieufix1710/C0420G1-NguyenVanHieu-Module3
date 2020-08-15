@@ -62,19 +62,19 @@
             <a class="nav-link" href="/furama_resort?activity=about">Giới thiệu <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Danh sách nhân viên</a>
+            <a class="nav-link" href="#alert">Danh sách nhân viên</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Dịch vụ đi kèm</a>
+            <a class="nav-link" href="#alert">Dịch vụ đi kèm</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"></a>
+            <a class="nav-link" href="#alert"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Dịch vụ</a>
+            <a class="nav-link" href="#alert">Dịch vụ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Danh sách khách hàng</a>
+            <a class="nav-link" href="#alert">Danh sách khách hàng</a>
           </li>
         </ul>
         <div class="login">
@@ -116,6 +116,15 @@
       </div>
     </div>
   </div>
+
+  <div id = "alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Oh no!</strong> You should login before check in on some of those fields below :D
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
 
   </body>
 </html>

@@ -41,7 +41,7 @@ public class Servlet extends HttpServlet {
                 updateEmployee(request, response);
                 break;
             case "login":
-                login(request,response);
+                login(request, response);
                 break;
             default:
                 break;
@@ -70,13 +70,16 @@ public class Servlet extends HttpServlet {
             case "showListEmployee":
                 showListEmployee(request, response);
                 break;
-            case "editEmployee":
-                showEditEmployee(request,response);
-                break;
             case "about":
-                about(request,response);
+                about(request, response);
+                break;
+            case "deleteEmployee":
+                deleteEmployee(request, response);
                 break;
 
+            case "editEmployee":
+                showEditEmployee(request, response);
+                break;
 
             default:
 
@@ -93,7 +96,7 @@ public class Servlet extends HttpServlet {
         request.setAttribute("customerType", customerTypeList);
         request.setAttribute("typeService", typeServiceList);
         request.setAttribute("typeRent", typeRentList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("furama/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("furama/tableCustomer.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -194,7 +197,7 @@ public class Servlet extends HttpServlet {
         request.setAttribute("levels", levelList);
         request.setAttribute("departments", departmentList);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("furama/listEmployee.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("furama/tableEmployee.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -220,9 +223,71 @@ public class Servlet extends HttpServlet {
         showListEmployee(request, response);
     }
 
+    public void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("idEmployee"));
+        String name = request.getParameter("nameEmployee");
+        String birthday = request.getParameter("birthdayEmployee");
+        int CMND = Integer.parseInt(request.getParameter("CMNDEmployee"));
+        double salary = Double.parseDouble(request.getParameter("salary"));
+        String phone = request.getParameter("phoneEmployee");
+        String email = request.getParameter("emailEmployee");
+        String address = request.getParameter("addressEmployee");
+        int idVitri = Integer.parseInt(request.getParameter("position"));
+        int idLevel = Integer.parseInt(request.getParameter("level"));
+        int idDepartment = Integer.parseInt(request.getParameter("department"));
+        this.bo.updateEmployee(new Employee(id, name, idVitri, idLevel, idDepartment, birthday, CMND, salary, phone, email, address));
+        showListEmployee(request, response);
+
+    }
+
+
+    public void login(HttpServletRequest request, HttpServletResponse response) {
+        String userName = request.getParameter("user");
+        String password = request.getParameter("password");
+        List<User> userList = this.bo.login();
+        for (User user : userList) {
+            if (userName.equals(user.getName()) && password.equals(user.getPassword())) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("furama/firstPage.jsp");
+                try {
+                    dispatcher.forward(request, response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                request.setAttribute("message", "User name or password not valid !");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                try {
+                    dispatcher.forward(request, response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public void about(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            response.sendRedirect("furama/about.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        this.bo.deleteEmployee(id);
+        showListEmployee(request, response);
+
+    }
+
     public void showEditEmployee(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Employee employee =this.bo.findEmployee(id);
+        Employee employee = this.bo.findEmployee(id);
         request.setAttribute("employee", employee);
 
         List<Position> positionList = this.bo.showListPosition();
@@ -233,68 +298,12 @@ public class Servlet extends HttpServlet {
         request.setAttribute("levels", levelList);
         request.setAttribute("departments", departmentList);
 
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("furama/editEmployee.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateEmployee(HttpServletRequest request, HttpServletResponse response){
-        int id=Integer.parseInt(request.getParameter("idEmployee"));
-        String name=request.getParameter("nameEmployee");
-        String birthday =request.getParameter("birthdayEmployee");
-        int CMND=Integer.parseInt(request.getParameter("CMNDEmployee"));
-        double salary=Double.parseDouble(request.getParameter("salary"));
-        String phone=request.getParameter("phoneEmployee");
-        String email=request.getParameter("emailEmployee");
-        String address=request.getParameter("addressEmployee");
-        int idVitri = Integer.parseInt(request.getParameter("position"));
-        int idLevel = Integer.parseInt(request.getParameter("level"));
-        int idDepartment = Integer.parseInt(request.getParameter("department"));
-        this.bo.updateEmployee(new Employee(id,name,idVitri,idLevel,idDepartment,birthday,CMND,salary,phone,email,address));
-        showListEmployee(request,response);
-
-    }
-
-
-
-    public void login(HttpServletRequest request,HttpServletResponse response){
-        String userName=request.getParameter("user");
-        String password=request.getParameter("password");
-        List<User> userList=this.bo.login();
-        for (User user : userList){
-            if (userName.equals(user.getName())&& password.equals(user.getPassword())){
-                RequestDispatcher dispatcher=request.getRequestDispatcher("furama/firstPage.jsp");
-                try {
-                    dispatcher.forward(request,response);
-                } catch (ServletException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            else {
-                request.setAttribute("message","User name or password not valid !");
-                RequestDispatcher dispatcher=request.getRequestDispatcher("index.jsp");
-                try {
-                    dispatcher.forward(request,response);
-                } catch (ServletException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
-
-    public void about(HttpServletRequest request,HttpServletResponse response){
-        try {
-            response.sendRedirect("furama/about.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }

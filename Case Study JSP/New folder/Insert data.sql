@@ -99,3 +99,6 @@ values
 (2,2,1,2),
 (3,4,2,2),
 (4,3,1,2);
+insert into user (name,password,IDnhanvien)
+values
+("admin","123123","1")
